@@ -1,12 +1,18 @@
-import React, { useState } from "react"
 import { IoCloseOutline } from "react-icons/io5"
 import ItemCard from "./ItemCard"
 import { useSelector } from "react-redux"
 import { FaCartShopping } from "react-icons/fa6"
+import { useState } from "react"
 
 function CartItem() {
   const [activeCart, setActiveCart] = useState(true)
   const cartItems = useSelector((state) => state.cart.cart)
+
+  const totalQty = cartItems.reduce((totalQty, item) => totalQty + item.qty, 0)
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.qty * item.price,
+    0
+  )
   console.log(cartItems)
   return (
     <>
@@ -44,8 +50,10 @@ function CartItem() {
         )}
 
         <div className='absolute bottom-0'>
-          <h3 className='font-semibold text-gray-600'>Items:1</h3>
-          <h3 className='font-semibold text-gray-600'>Total Amount:1500</h3>
+          <h3 className='font-semibold text-gray-600'>Items:{totalQty}</h3>
+          <h3 className='font-semibold text-gray-600'>
+            Total Amount:{totalPrice}
+          </h3>
           <hr className='w-[90vw] lg:w-[20vw]' />
           <button className='p-1 lg:w-[20vw] w-full items-center text-white bg-green-500 hover:bg-green-700 rounded-md text-sm'>
             Checkout
@@ -53,7 +61,9 @@ function CartItem() {
         </div>
       </div>
       <FaCartShopping
-        className='fixed rounded-full bg-white shadow-md text-5xl p-3 bottom-3 right-3 hover:bg-green-600 hover:text-white '
+        className={`fixed rounded-full bg-white shadow-md text-5xl p-3 bottom-3 right-3 hover:bg-green-600 hover:text-white ${
+          totalQty > 0 && "animate-bounce delay-500"
+        }`}
         onClick={() => setActiveCart(!activeCart)}
       />
     </>
