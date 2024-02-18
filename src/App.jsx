@@ -4,13 +4,17 @@ import Success from "./pages/Success"
 import Error from "./pages/Error"
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import "./index.css"
+import ProtectedRoutes from "./components/ProtectedRoutes"
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/success' element={<Success />} />
+        <Route
+          path='/success'
+          element={<ProtectedRoutes element={<Success />} />}
+        />
         <Route path='/*' element={<Error />} />
       </Routes>
     </BrowserRouter>

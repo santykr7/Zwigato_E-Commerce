@@ -32,17 +32,17 @@ function ItemCard({ id, name, price, qty, img }) {
       <img src={img} alt='img' className='w-[50px] h-[50px]' />
       <div className='text-gray-600 font-bold'>
         <h2 className='text-sm'>{name}</h2>
-        <div className='flex justify-center'>
+        <div className='flex justify-center '>
           <span className='text-green-600 font-bold'>Rs {price}</span>
           <div className='flex gap-2 absolute right-0'>
             <GoPlusCircle
               onClick={() => dispatch(increaseQty({ id }))}
-              className='border-2 rounded-lg border-gray-500 text-gray-600 hover:bg-green-600 hover:text-white p-1 text-3xl cursor-pointer hover:border-none'
+              className=' rounded-lg top-87 border-gray-500 text-gray-600 hover:bg-green-600 hover:text-white p-1 text-3xl cursor-pointer hover:border-none'
             />
             <span>{qty}</span>
             <FiMinusCircle
               onClick={() => dispatch(decreaseQty({ id }))}
-              className='border-2 rounded-lg border-gray-500 text-gray-600 hover:bg-green-600 hover:text-white p-1 text-3xl cursor-pointer hover:border-none'
+              className=' rounded-lg border-gray-500 text-gray-600 hover:bg-green-600 hover:text-white p-1 text-3xl cursor-pointer hover:border-none'
             />
           </div>
         </div>

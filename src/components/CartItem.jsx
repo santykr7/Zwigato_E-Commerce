@@ -3,9 +3,10 @@ import ItemCard from "./ItemCard"
 import { useSelector } from "react-redux"
 import { FaCartShopping } from "react-icons/fa6"
 import { useState } from "react"
+import { Navigate, useNavigate } from "react-router-dom"
 
 function CartItem() {
-  const [activeCart, setActiveCart] = useState(true)
+  const [activeCart, setActiveCart] = useState(false)
   const cartItems = useSelector((state) => state.cart.cart)
 
   const totalQty = cartItems.reduce((totalQty, item) => totalQty + item.qty, 0)
@@ -13,7 +14,7 @@ function CartItem() {
     (total, item) => total + item.qty * item.price,
     0
   )
-  console.log(cartItems)
+  const navigate = useNavigate()
   return (
     <>
       <div
@@ -55,14 +56,18 @@ function CartItem() {
             Total Amount:{totalPrice}
           </h3>
           <hr className='w-[90vw] lg:w-[20vw]' />
-          <button className='p-1 lg:w-[20vw] w-full items-center text-white bg-green-500 hover:bg-green-700 rounded-md text-sm'>
+
+          <button
+            onClick={() => navigate("/success")}
+            className='p-1 lg:w-[20vw] w-full items-center text-white bg-green-500 hover:bg-green-700 rounded-md text-sm'
+          >
             Checkout
           </button>
         </div>
       </div>
       <FaCartShopping
-        className={`fixed rounded-full bg-white shadow-md text-5xl p-3 bottom-3 right-3 hover:bg-green-600 hover:text-white ${
-          totalQty > 0 && "animate-bounce delay-500"
+        className={`fixed rounded-full cursor-pointer bg-white shadow-md text-5xl p-3 bottom-3 right-3 hover:bg-green-700 hover:text-white ${
+          totalQty > 0 && "animate-bounce delay-300"
         }`}
         onClick={() => setActiveCart(!activeCart)}
       />
