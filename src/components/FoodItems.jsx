@@ -7,7 +7,6 @@ import { store } from "../store/store"
 const FoodItems = () => {
   const category = useSelector((store) => store.category.category)
   const search = useSelector((store) => store.search.search)
-  console.log(search)
   const handleToast = (name) => toast.success(`${name} added to your cart`)
   return (
     <>

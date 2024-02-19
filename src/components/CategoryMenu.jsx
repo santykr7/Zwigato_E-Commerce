@@ -9,7 +9,6 @@ const CategoryMenu = () => {
   const listUniqueCategories = () => {
     const uniqueCategories = [...new Set(FoodData.map((food) => food.category))]
     setCategories(uniqueCategories)
-    console.log(uniqueCategories)
   }
 
   useEffect(() => {

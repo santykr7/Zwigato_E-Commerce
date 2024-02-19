@@ -32,7 +32,6 @@ function CartItem() {
 
         {cartItems.length > 0 ? (
           cartItems.map((food) => {
-            console.log(food)
             return (
               <ItemCard
                 key={food.id}
